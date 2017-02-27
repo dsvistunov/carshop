@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block carditail %}
+    {% if car.car_image %}
+        <img src="{% static car.car_image %}" alt="img">
+    {% else %}
+        <img src="{% static 'static/imgs/noimage.jpg' %}" alt="No images">
+    {% endif %}
+    <h3>{{ car.car_mark }}</h3>
+    <h4>{{ car.car_model }}</h4>
+    <h4>Год выпуска: {{ car.car_year }}</h4>
+    <p>Описание: {{ car.car_description }}</p>
+    <p>Добавлено: {{ car.car_public }}</p>
+
+
+
+{% endblock %}

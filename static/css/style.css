@@ -1,0 +1,5 @@
+.addcardform input[type='text'],
+.addcardform textarea {
+    border-radius: 5px;
+}
+

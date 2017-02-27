@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/style.css' %}">
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">CarShop</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Пункт 0</a></li>
+                <li><a href="/">Пункт 2</a></li>
+                <li class="right"><a href="{% url 'carshop:addcar' %}">ADD</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if username %}
+                    <li><a href="{% url 'loginsys:logout' %}">Выйти {{ username }}</a></li>
+                {% else %}
+                    <li><a href="{% url 'loginsys:login' %}">Войти</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% block regist %}{% endblock %}
+        {% block login %}{% endblock %}
+        {% block carditail %}{% endblock %}
+        {% block form %}{% endblock %}
+        {% block carlist %}{% endblock %}
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'static/js/bootstrap.js' %}"></script>
+
+</body>
+</html>

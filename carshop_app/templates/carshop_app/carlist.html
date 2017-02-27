@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block carlist %}
+    {% if cars %}
+        {% for car in cars %}
+            <div class="container">
+                <a href="{% url 'carshop:carditail' car.id %}">{{ car.car_mark }} {{ car.car_model }}</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p><h3>None cars</h3></p>
+    {% endif %}
+{% endblock %}
