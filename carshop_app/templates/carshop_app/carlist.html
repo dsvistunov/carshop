@@ -1,13 +1,31 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block carlist %}
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
     {% if cars %}
         {% for car in cars %}
-            <div class="container">
+            <div class="row">
+            <div class="col-md-6 carditail">
+                {% if car.car_image %}
+                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static car.car_image %}" alt="car image"></a>
+                {% else %}
+                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static 'static/imgs/noimage.jpg' %}" alt="No images"></a>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
                 <a href="{% url 'carshop:carditail' car.id %}">{{ car.car_mark }} {{ car.car_model }}</a>
+                <p>{{ car.car_year }}</p>
+                <p>Publicate: {{ car.car_public }}</p>
+            </div>
             </div>
         {% endfor %}
     {% else %}
         <p><h3>None cars</h3></p>
     {% endif %}
+    </div>
+    <div class="col-md-3"></div>
 {% endblock %}

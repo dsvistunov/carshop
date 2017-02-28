@@ -17,7 +17,7 @@ def carditail(request, car_id):
 
 def addcar(request):
     if request.POST:
-        car = AddCarForm(request.POST)
+        car = AddCarForm(request.POST, request.FILES)
         if car.is_valid():
             car.save()
         response = redirect('/')
@@ -25,6 +25,7 @@ def addcar(request):
         args = {}
         args.update(csrf(request))
         args['form'] = AddCarForm
+        args['username'] = auth.get_user(request).username
         response = render_to_response('addcarform.html', args)
     return response
 
