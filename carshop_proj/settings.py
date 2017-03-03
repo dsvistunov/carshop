@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'carshop_app',
     'loginsys',
+
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,9 @@ STATICFILES_DIRS = [
     ('static', '/home/denis/Projects/carshop_env/carshop_proj/static'),
 
 ]
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'denissvistunov'
+EMAIL_HOST_PASSWORD = 'wa23sd54fg'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
