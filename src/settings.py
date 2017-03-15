@@ -134,16 +134,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')
 
 # MEDIA_URL = '/images/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    (os.path.join(BASE_DIR, 'static')),
+    (os.path.join(BASE_DIR, 'static', 'css')),
+    (os.path.join(BASE_DIR, 'static', 'fonts')),
+    (os.path.join(BASE_DIR, 'static', 'images')),
+    (os.path.join(BASE_DIR, 'static', 'js')),
+
 ]
 
 EMAIL_HOST = 'smtp.sendgrid.net'

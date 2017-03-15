@@ -13,4 +13,4 @@ class Car(models.Model):
     car_year = models.CharField(max_length=4)
     car_description = models.TextField(max_length=10000)
     car_public = models.DateTimeField(auto_now_add=True)
-    car_image = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Image',)
+    car_image = models.ImageField(null=True, blank=True, verbose_name='Image',)
