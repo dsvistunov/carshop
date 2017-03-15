@@ -1,11 +1,11 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'static/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
@@ -37,18 +37,13 @@
 
 <div class="container">
     <div class="row">
-        {% block contact %}{% endblock %}
-        {% block regist %}{% endblock %}
-        {% block login %}{% endblock %}
-        {% block carditail %}{% endblock %}
-        {% block form %}{% endblock %}
-        {% block carlist %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="{% static 'static/js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 </html>

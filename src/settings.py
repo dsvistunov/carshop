@@ -14,15 +14,19 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 
+
+# load .env
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$ktq5h8@2o)k+v!=@g-k-uq^mkk!+8fs7oc-0^ck^2%de_pt5y'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'carshop_app',
+    'cars',
     'loginsys',
 
 ]
@@ -54,15 +58,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'carshop_proj.urls'
+ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/home/denis/Projects/carshop_env/carshop_proj/templates/carshop_proj',
-            '/home/denis/Projects/carshop_env/carshop_proj/carshop_app/templates/carshop_app',
-            '/home/denis/Projects/carshop_env/carshop_proj/loginsys/templates/loginsys',
+            (os.path.join(BASE_DIR, 'templates')),
+            (os.path.join(BASE_DIR, 'cars/templates/cars')),
+            (os.path.join(BASE_DIR, 'loginsys/templates/loginsys')),
+
+            # '/home/denis/Projects/carshop_env/src/templates/src',
+            # '/home/denis/Projects/carshop_env/src/cars/templates/cars',
+            # '/home/denis/Projects/carshop_env/src/loginsys/templates/loginsys',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -76,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'carshop_proj.wsgi.application'
+WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database
@@ -126,19 +134,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+
+# MEDIA_URL = '/images/'
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-
-    ('static', '/home/denis/Projects/carshop_env/carshop_proj/static'),
-
+    (os.path.join(BASE_DIR, 'static')),
 ]
-
-# load .env
-
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')

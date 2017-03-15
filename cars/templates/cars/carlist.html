@@ -1,7 +1,7 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block carlist %}
+{% block content %}
     <div class="col-md-3">
 
     </div>
@@ -13,7 +13,7 @@
                 {% if car.car_image %}
                     <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static car.car_image %}" alt="car image"></a>
                 {% else %}
-                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static 'static/imgs/noimage.jpg' %}" alt="No images"></a>
+                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static 'images/noimage.jpg' %}" alt="No images"></a>
                 {% endif %}
             </div>
             <div class="col-md-4">

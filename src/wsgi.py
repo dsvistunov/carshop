@@ -9,12 +9,9 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 
 import os
 
-CONFIG_PATH=${HOME}/.config/foo
-DOMAIN=example.org
-EMAIL=admin@${DOMAIN}
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "carshop_proj.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings")
 
 application = get_wsgi_application()

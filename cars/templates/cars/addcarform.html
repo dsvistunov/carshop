@@ -1,6 +1,6 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
-{% block form %}
+{% block content %}
     <form action="{% url 'carshop:addcar' %}" method="post" class="form-horizontal addcardform" enctype='multipart/form-data'>
         {% csrf_token %}
         {% for field in form %}
