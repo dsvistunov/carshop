@@ -39,11 +39,12 @@ def contact(request):
         if form.is_valid():
 
             contact_name = request.POST.get('contact_name', '')
-            contact_email =request.POST.get('contact_email', '')
+            contact_email = request.POST.get('contact_email', '')
             subject = request.POST.get('contact_subject', '')
             form_content = request.POST.get('content', '')
 
             template = get_template('contact_template.html')
+
             context = Context({
                 'contact_name': contact_name,
                 'contact_email': contact_email,
@@ -61,6 +62,15 @@ def contact(request):
                 fail_silently=False,
                 html_message=content
             )
+
+            # email = EmailMultiAlternatives(
+            #     subject=context['subject'],
+            #     body=content,
+            #     from_email=contact_email,
+            #     to=['d.svistunov1991@gmail.com']
+            # )
+            # email.send()
+
             response = redirect('/')
         else:
             response = redirect('/contact')
@@ -71,4 +81,3 @@ def contact(request):
         response = render_to_response('contactform.html', args)
 
     return response
-

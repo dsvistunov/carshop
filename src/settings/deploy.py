@@ -7,3 +7,4 @@ ALLOWED_HOSTS = ['denissvistunov.pythonanywhere.com']
 
 MEDIA_URL = '/images/'
 
+SESSION_COOKIE_SECURE = True
