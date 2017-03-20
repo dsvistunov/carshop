@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Contacts us</h1>
-    <form role='form' action="" method="post" class="form-horizontal addcardform">
+    <form role='form' action="{% url 'carshop:contact' %}" method="post" class="form-horizontal addcardform">
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">

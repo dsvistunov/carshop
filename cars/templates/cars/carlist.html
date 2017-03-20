@@ -11,7 +11,7 @@
             <div class="row">
             <div class="col-md-6 carditail">
                 {% if car.car_image %}
-                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static car.car_image %}" alt="car image"></a>
+                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static car.car_image.url %}" alt="car image"></a>
                 {% else %}
                     <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static 'images/noimage.jpg' %}" alt="No images"></a>
                 {% endif %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block regist %}
+{% block content %}
     <form action="{% url 'loginsys:regist' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         {% for field in form %}
