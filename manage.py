@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 import os
 import sys
+import dotenv
 
 if __name__ == "__main__":
+    #load dotenv
+    dotenv.read_dotenv()
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings")
     try:
