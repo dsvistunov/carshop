@@ -5,12 +5,25 @@ from django.core.mail import EmailMessage, send_mail, EmailMultiAlternatives
 from django.template import Context
 from django.template.loader import get_template
 from .models import Car
-from .forms import AddCarForm, ContactForm
+from .forms import AddCarForm, ContactForm, SearchForm
 
 # Create your views here.
 
 def carlist(request):
-    return render_to_response('carlist.html', {'cars': Car.objects.order_by('-car_public'), 'username': auth.get_user(request).username})
+    args = {}
+    args.update(csrf(request))
+    args['username'] = auth.get_user(request).username
+    if request.POST:
+        marc = request.POST.get('marc', '')
+        model = request.POST.get('model', '')
+        year = request.POST.get('year', '')
+        args['cars'] = Car.objects.filter(car_mark=marc, car_model=model, car_year=year)
+        response = render_to_response('carlist.html', args)
+    else:
+        args['form'] = SearchForm
+        args['cars'] = Car.objects.order_by('-car_public')[:2]
+        response = render_to_response('carlist.html', args)
+    return response
 
 def carditail(request, car_id):
     args = {}

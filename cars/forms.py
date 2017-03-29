@@ -12,3 +12,24 @@ class ContactForm(forms.Form):
     contact_subject = forms.CharField(required=True, label='Subject')
     content = forms.CharField(required=True, widget=forms.Textarea, label='Text')
 
+
+class SearchForm(forms.Form):
+    MARC_CHOICES = (
+        ('VW', 'VW'),
+        ('C', 'Golf'),
+        ('E', 'Tiguan'),
+        ('B', 'Transporter2'),
+        ('M', 'Transporter3'),
+    )
+    MODEL_CHOICES = (
+        ('Transporter', 'Transporter'),
+    )
+    YEAR_CHOICES = (
+        ('2010', '2010'),
+        ('2016', '2016'),
+    )
+    marc = forms.ChoiceField(choices=MARC_CHOICES)
+    model = forms.ChoiceField(choices=MODEL_CHOICES)
+    year = forms.ChoiceField(choices=YEAR_CHOICES)
+
+

@@ -5,6 +5,38 @@
 
 {% block content %}
     <div class="col-md-3">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <h4>Serch car:</h4>
+            <form action="{% url 'carshop:carlist' %}" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <select class="form-control" id="" name="marc">
+                        <option value="">Marc</option>
+                        <option value="VW">VW</option>
+                        <option value="">Marc</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="model" id="">
+                        <option value="">Model</option>
+                        <option value="Transporter">Transporter</option>
+                        <option value="Golf">Golf</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="year" id="">
+                        <option value="">Year</option>
+                        <option value="2010">2010</option>
+                        <option value="2016">2016</option>
+                    </select>
+                </div>
+
+                <input class="btn btn-default" type="submit" value="Find">
+
+            </form>
+        </div>
+        <div class="col-md-1"></div>
 
     </div>
     <div class="col-md-6">
@@ -29,5 +61,16 @@
         <p><h3>None cars</h3></p>
     {% endif %}
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <form action="{% url 'carshop:carlist' %}" method="post" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+                {% for field in form %}
+                    <p>{{ field }}</p>
+                {% endfor %}
+            </div>
+            <input class="btn btn-default" type="submit" value="Find">
+        </form>
+
+    </div>
 {% endblock %}
