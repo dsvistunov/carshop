@@ -4,32 +4,20 @@ from django.contrib import auth
 from django.core.mail import EmailMessage, send_mail, EmailMultiAlternatives
 from django.template import Context
 from django.template.loader import get_template
+from django.views.generic import ListView, DetailView
 from .models import Car
 from .forms import AddCarForm, ContactForm, SearchForm
 
-# Create your views here.
 
-def carlist(request):
-    args = {}
-    args.update(csrf(request))
-    args['username'] = auth.get_user(request).username
-    if request.POST:
-        marc = request.POST.get('marc', '')
-        model = request.POST.get('model', '')
-        year = request.POST.get('year', '')
-        args['cars'] = Car.objects.filter(car_mark=marc, car_model=model, car_year=year)
-        response = render_to_response('carlist.html', args)
-    else:
-        args['form'] = SearchForm
-        args['cars'] = Car.objects.order_by('-car_public')[:2]
-        response = render_to_response('carlist.html', args)
-    return response
+class IndexView(ListView):
+    context_object_name = 'cars'
+    template_name = 'carlist.html'
+    queryset = Car.objects.order_by('-car_public')[:3]
 
-def carditail(request, car_id):
-    args = {}
-    args['car'] = get_object_or_404(Car, pk=car_id)
-    args['username'] = auth.get_user(request).username
-    return render_to_response('carditail.html', args)
+
+class CarDetail(DetailView):
+    model = Car
+    template_name = 'carditail.html'
 
 def addcar(request):
     if request.POST:
@@ -89,7 +77,7 @@ def contact(request):
             response = redirect('/contact')
     else:
         args = {}
-        args.update(csrf(request))
+        # args.update(csrf(request))
         args['form'] = ContactForm
         response = render_to_response('contactform.html', args)
 

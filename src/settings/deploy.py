@@ -1,9 +1,9 @@
 from .base import *
 
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['denissvistunov.pythonanywhere.com']
+ALLOWED_HOSTS = ['denissvistunov.pythonanywhere.com', '*']
 
 MEDIA_URL = '/images/'
 

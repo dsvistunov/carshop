@@ -1,10 +1,30 @@
+import itertools
 from django import forms
+from django.utils.text import slugify
 from .models import Car
 
 class AddCarForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = ['car_mark', 'car_model', 'car_year', 'car_description', 'car_image']
+
+    def save(self, commit=True):
+        instance = super(AddCarForm, self).save(commit=False)
+
+        max_length = Car._meta.get_field('slug').max_length
+        value = instance.car_mark + ' ' + instance.car_model
+        instance.slug = orig = slugify(value)[:max_length]
+
+        for x in itertools.count(1):
+            if Car.objects.filter(slug=instance.slug).exists():
+                # Truncate the original slug dynamically. Minus 1 for the hyphen.
+                instance.slug = "%s-%d" % (orig[:max_length - len(str(x)) - 1], x)
+            else:
+                break
+        instance.save()
+
+        return instance
+
 
 class ContactForm(forms.Form):
     contact_name = forms.CharField(required=True, label='Name')

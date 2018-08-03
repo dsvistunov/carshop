@@ -4,73 +4,25 @@
 {% block title %}CarShop{% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-        <h4>Serch car:</h4>
-            <form action="{% url 'carshop:carlist' %}" method="post" class="form-horizontal">
-                {% csrf_token %}
-                <div class="form-group">
-                    <select class="form-control" id="" name="marc">
-                        <option value="">Marc</option>
-                        <option value="VW">VW</option>
-                        <option value="">Marc</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" name="model" id="">
-                        <option value="">Model</option>
-                        <option value="Transporter">Transporter</option>
-                        <option value="Golf">Golf</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" name="year" id="">
-                        <option value="">Year</option>
-                        <option value="2010">2010</option>
-                        <option value="2016">2016</option>
-                    </select>
-                </div>
-
-                <input class="btn btn-default" type="submit" value="Find">
-
-            </form>
-        </div>
-        <div class="col-md-1"></div>
-
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-md-6">
-    {% if cars %}
         {% for car in cars %}
             <div class="row">
             <div class="col-md-6 carditail">
                 {% if car.car_image %}
-                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static car.car_image.url %}" alt="car image"></a>
+                    <a href="{% url 'carshop:carditail' car.slug %}"><img src="{{ car.car_image.url }}" alt="car image"></a>
                 {% else %}
-                    <a href="{% url 'carshop:carditail' car.id %}"><img src="{% static 'images/noimage.jpg' %}" alt="No images"></a>
+                    <a href="{% url 'carshop:carditail' car.slug %}"><img src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
                 {% endif %}
             </div>
             <div class="col-md-4">
-                <a href="{% url 'carshop:carditail' car.id %}">{{ car.car_mark }} {{ car.car_model }}</a>
+                <a href="{% url 'carshop:carditail' car.slug %}">{{ car.car_mark }} {{ car.car_model }}<br> {{ car.slug }}</a>
                 <p>{{ car.car_year }}</p>
                 <p>Publicate: {{ car.car_public }}</p>
             </div>
             </div>
         {% endfor %}
-    {% else %}
-        <p><h3>None cars</h3></p>
-    {% endif %}
     </div>
     <div class="col-md-3">
-        <form action="{% url 'carshop:carlist' %}" method="post" class="form-horizontal">
-            {% csrf_token %}
-            <div class="form-group">
-                {% for field in form %}
-                    <p>{{ field }}</p>
-                {% endfor %}
-            </div>
-            <input class="btn btn-default" type="submit" value="Find">
-        </form>
-
     </div>
 {% endblock %}

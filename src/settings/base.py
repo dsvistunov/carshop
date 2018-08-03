@@ -38,14 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'cars',
-    'loginsys',
 
+    'whitenoise.runserver_nostatic',
+
+    'django.contrib.staticfiles',
+
+    'cars',
+
+    'registration'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,11 +67,6 @@ TEMPLATES = [
         'DIRS': [
             (os.path.join(BASE_DIR, 'templates')),
             (os.path.join(BASE_DIR, 'cars/templates/cars')),
-            (os.path.join(BASE_DIR, 'loginsys/templates/loginsys')),
-
-            # '/home/denis/Projects/carshop_env/src/templates/src',
-            # '/home/denis/Projects/carshop_env/src/cars/templates/cars',
-            # '/home/denis/Projects/carshop_env/src/loginsys/templates/loginsys',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -130,31 +130,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads', 'images')
 
-# MEDIA_URL = '/images/'
+MEDIA_URL = '/images/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    (os.path.join(BASE_DIR, 'static', 'css')),
-    (os.path.join(BASE_DIR, 'static', 'fonts')),
-    (os.path.join(BASE_DIR, 'static', 'images')),
-    (os.path.join(BASE_DIR, 'static', 'js')),
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'uploads'),
+)
 
-]
-
-EMAIL_BACKEND = 'sgbackend.SendGridBackend'
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_HOST_USER = os.environ.get('GMAIL_USER')
-# EMAIL_HOST_PASSWORD = os.environ.get('GMAIL_PASSWORD')
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+#sendGrid settings
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+DEFAULT_FROM_EMAIL = 'admin@carshop.com'
 
 CSRF_COOKIE_SECURE = True
 
-# SESSION_COOKIE_SECURE = False
+# django-registration
+ACCOUNT_ACTIVATION_DAYS = 1
+
+LOGIN_REDIRECT_URL = '/'
