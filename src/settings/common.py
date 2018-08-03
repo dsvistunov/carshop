@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['denissvistunov.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['denissvistunov.pythonanywhere.com']
 
 
 # Application definition
@@ -141,6 +141,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'uploads'),
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 #sendGrid settings
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
