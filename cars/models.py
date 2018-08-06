@@ -1,5 +1,6 @@
 import itertools
 from django.utils import timezone
+from django.urls import reverse
 from django.db import models
 
 
@@ -15,3 +16,6 @@ class Car(models.Model):
     car_description = models.TextField(max_length=10000)
     car_public = models.DateTimeField(auto_now_add=True)
     car_image = models.ImageField(null=True, blank=True, verbose_name='Image')
+
+    def get_absolute_url(self):
+        return reverse('carditail', kwargs={'slug': self.slug})

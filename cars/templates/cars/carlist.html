@@ -10,13 +10,13 @@
             <div class="row">
             <div class="col-md-6 carditail">
                 {% if car.car_image %}
-                    <a href="{% url 'carshop:carditail' car.slug %}"><img src="{{ car.car_image.url }}" alt="car image"></a>
+                    <a href="{% url 'carditail' car.slug %}"><img src="{{ car.car_image.url }}" alt="car image"></a>
                 {% else %}
-                    <a href="{% url 'carshop:carditail' car.slug %}"><img src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
+                    <a href="{% url 'carditail' car.slug %}"><img src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
                 {% endif %}
             </div>
             <div class="col-md-4">
-                <a href="{% url 'carshop:carditail' car.slug %}">{{ car.car_mark }} {{ car.car_model }}<br> {{ car.slug }}</a>
+                <a href="{% url 'carditail' car.slug %}">{{ car.car_mark }} {{ car.car_model }}<br> {{ car.slug }}</a>
                 <p>{{ car.car_year }}</p>
                 <p>Publicate: {{ car.car_public }}</p>
             </div>

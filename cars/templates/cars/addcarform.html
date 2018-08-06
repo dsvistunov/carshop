@@ -3,7 +3,7 @@
 {% block title %}ADD{% endblock %}
 
 {% block content %}
-    <form action="{% url 'carshop:addcar' %}" method="post" class="form-horizontal addcardform" enctype='multipart/form-data'>
+    <form action="{% url 'addcar' %}" method="post" class="form-horizontal addcardform" enctype='multipart/form-data'>
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">

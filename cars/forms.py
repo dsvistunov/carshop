@@ -1,6 +1,9 @@
 import itertools
 from django import forms
+from django.core.mail import send_mail
 from django.utils.text import slugify
+from django.template import Context
+from django.template.loader import get_template
 from .models import Car
 
 class AddCarForm(forms.ModelForm):
@@ -32,6 +35,31 @@ class ContactForm(forms.Form):
     contact_subject = forms.CharField(required=True, label='Subject')
     content = forms.CharField(required=True, widget=forms.Textarea, label='Text')
 
+    def send_email(self):
+        contact_name = self.cleaned_data['contact_name']
+        contact_email = self.cleaned_data['contact_email']
+        subject = self.cleaned_data['contact_subject']
+        form_content = self.cleaned_data['content']
+
+        template = get_template('contact_template.html')
+
+        context = Context({
+            'contact_name': contact_name,
+            'contact_email': contact_email,
+            'subject': subject,
+            'form_content': form_content
+        })
+
+        content = template.render(context)
+
+        send_mail(
+            context['subject'],
+            content,
+            contact_email,
+            ['d.svistunov1991@gmail.com'],
+            fail_silently=False,
+            html_message=content
+        )
 
 class SearchForm(forms.Form):
     MARC_CHOICES = (
