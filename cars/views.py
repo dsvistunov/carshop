@@ -1,12 +1,6 @@
-from django.shortcuts import render, render_to_response, redirect, get_object_or_404
-from django.template.context_processors import csrf
-from django.contrib import auth
-from django.core.mail import EmailMessage, send_mail, EmailMultiAlternatives
-from django.template import Context
-from django.template.loader import get_template
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from .models import Car
-from .forms import AddCarForm, ContactForm, SearchForm
+from .forms import AddCarForm, ContactForm
 
 
 class IndexView(ListView):
