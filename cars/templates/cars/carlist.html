@@ -4,25 +4,45 @@
 {% block title %}CarShop{% endblock %}
 
 {% block content %}
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        {% for car in cars %}
-            <div class="row">
-            <div class="col-md-6 carditail">
-                {% if car.car_image %}
-                    <a href="{% url 'carditail' car.slug %}"><img src="{{ car.car_image.url }}" alt="car image"></a>
-                {% else %}
-                    <a href="{% url 'carditail' car.slug %}"><img src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
-                {% endif %}
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="masthead" style="background-image: url('static/cars/images/home-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Welcome to CarShop</h1>
+              <span class="subheading">A Blog Theme by Start Bootstrap</span>
             </div>
-            <div class="col-md-4">
-                <a href="{% url 'carditail' car.slug %}">{{ car.car_mark }} {{ car.car_model }}<br> {{ car.slug }}</a>
-                <p>{{ car.car_year }}</p>
-                <p>Publicate: {{ car.car_public }}</p>
-            </div>
-            </div>
-        {% endfor %}
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="text-center">
+        <h1>Last added</h1>
     </div>
-    <div class="col-md-3">
-    </div>
+    <div class="container">
+        <div class="row text-center">
+            {% for car in cars %}
+                <div class="col-sm-4 my-4">
+                    <div class="card">
+                        {% if car.car_image %}
+                                <a href="{% url 'carditail' car.slug %}"><img class="card-img-top" src="{{ car.car_image.url }}" alt="car image">
+                            {% else %}
+                                <a href="{% url 'carditail' car.slug %}"><img src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
+                            {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title">{{ car.car_mark }} {{ car.car_model }}</h4>
+                            <p class="card-text">{{ car.car_description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'carditail' car.slug %}" class="btn btn-primary">Find Out More!</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+      </div>
 {% endblock %}
