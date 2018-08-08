@@ -3,42 +3,33 @@
 
 {% block title %}CarShop{% endblock %}
 
-{% block content %}
+{% block header_background %}
+    {% static "cars/images/home-bg.jpg" %}
+{% endblock %}
 
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="masthead" style="background-image: url('static/cars/images/home-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>Welcome to CarShop</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="text-center">
-        <h1>Last added</h1>
-    </div>
+{% block header_title %}Welcome to CarShop{% endblock %}
+
+{% block subheader_title %}A Blog Theme by Start Bootstrap{% endblock %}
+
+{% block content %}
     <div class="container">
-        <div class="row text-center">
+        <h1 class="text-center my-4">Last added</h1>
+        <div class="row">
             {% for car in cars %}
                 <div class="col-sm-4 my-4">
                     <div class="card">
                         {% if car.car_image %}
-                                <a href="{% url 'carditail' car.slug %}"><img class="card-img-top" src="{{ car.car_image.url }}" alt="car image">
-                            {% else %}
-                                <a href="{% url 'carditail' car.slug %}"><img src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
-                            {% endif %}
-                        <div class="card-body">
+                            <a href="{% url 'carditail' car.slug %}"><img class="card-img-top" src="{{ car.car_image.url }}" alt="car image"></a>
+                        {% else %}
+                            <a href="{% url 'carditail' car.slug %}"><img class="card-img-top" src="{% static 'cars/images/noimage.jpg' %}" alt="No images"></a>
+                        {% endif %}
+                        <div class="card-body post-preview">
                             <h4 class="card-title">{{ car.car_mark }} {{ car.car_model }}</h4>
-                            <p class="card-text">{{ car.car_description }}</p>
+                            <p class="card-text">{{ car.car_year }}</p>
+                            <p class="post-meta">{{ car.car_public }}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="{% url 'carditail' car.slug %}" class="btn btn-primary">Find Out More!</a>
+                            <a href="{% url 'carditail' car.slug %}" class="btn btn-dark btn-block">View details</a>
                         </div>
                     </div>
                 </div>
