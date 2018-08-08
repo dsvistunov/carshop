@@ -1,7 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Log out{% endblock %}
+
+{% block header_background %}
+	{% static "cars/images/home-bg.jpg" %}
+{% endblock %}
+
+{% block header_title %}Successfully logged out{% endblock %}
+
+{% block subheader_title %}Hope to see you soon{% endblock %}
+
 
 {% block content %}
-	<h1>Logged out</h1>	
-	<p>Thanks for visit my site</p>
-	<a href="{% url 'auth_login' %}">Lig in again</a>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4 mx-auto">
+			<h1 class="text-center">You may</h1>
+			<div class="">
+				<ul class="nav justify-content-center">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Come Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'auth_login' %}">Log in againe</a>
+					</li>					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
