@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'cars/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,6 +25,23 @@
 
 </head>
 <body>
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="masthead" style="background-image: url({% block header_background %}{% endblock %})">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>{% block header_title %}{% endblock %}</h1>
+             <span class="subheading">
+               {% block subheader_title %}{% endblock %}
+             </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">

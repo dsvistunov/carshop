@@ -1,23 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}ADD{% endblock %}
 
+{% block header_background %}
+    {% static "cars/images/post-bg.jpg" %}
+{% endblock %}
+
+{% block header_title %}Add car{% endblock %}
+
+{% block subheader_title %}A Blog Theme by Start Bootstrap{% endblock %}
+
 {% block content %}
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="masthead" style="background-image: url('/static/cars/images/post-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>Add car</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-10 mx-auto">
