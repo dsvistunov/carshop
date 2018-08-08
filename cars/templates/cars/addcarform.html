@@ -3,16 +3,42 @@
 {% block title %}ADD{% endblock %}
 
 {% block content %}
-    <form action="{% url 'addcar' %}" method="post" class="form-horizontal addcardform" enctype='multipart/form-data'>
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                <div class="col-sm-2 control-label">{{ field.label_tag }}</div>
-                <div class="col-sm-10">{{ field }}</div>
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="masthead" style="background-image: url('/static/cars/images/post-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Add car</h1>
+              <span class="subheading">A Blog Theme by Start Bootstrap</span>
             </div>
-        {% endfor %}
-        <div class="col-sm-offset-2 col-sm-10">
-            <input class="btn btn-default" type="submit" value="Add">
+          </div>
         </div>
-    </form>
+      </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-10 mx-auto">
+                <form action="{% url 'addcar' %}" method="post" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="from-group row">
+                            <label class="col-sm-4 col-form-label">{{ field.label }}</label>
+                            {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <div class="text-danger">
+                                            {{ error }}
+                                        </div>
+                                    {%endfor%}
+                                {% endif %}
+                            <div class="col-sm-8">{{ field }}</div>
+                        </div><br>
+                    {% endfor %}
+                    <input class="btn btn-dark btn-block" type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
