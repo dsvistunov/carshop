@@ -1,5 +1,6 @@
 import itertools
 from django import forms
+from django.forms import Form, ModelForm, TextInput, Textarea
 from django.core.mail import send_mail
 from django.utils.text import slugify
 from django.template import Context
@@ -10,6 +11,21 @@ class AddCarForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = ['car_mark', 'car_model', 'car_year', 'car_description', 'car_image']
+        widgets = {
+            'car_mark': TextInput(attrs={
+                    'class': 'form-control'
+                }),
+            'car_model': TextInput(attrs={
+                    'class': 'form-control'
+                }),
+            'car_year': TextInput(attrs={
+                    'class': 'form-control'
+                }),
+            'car_description': Textarea(attrs={
+                    'class': 'form-control',
+                    'rows': '5',
+                })
+        }
 
     def save(self, commit=True):
         instance = super(AddCarForm, self).save(commit=False)
