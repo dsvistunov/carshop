@@ -25,7 +25,7 @@
                         {% endif %}
                         <div class="card-body post-preview">
                             <h4 class="card-title">{{ car.car_mark }} {{ car.car_model }}</h4>
-                            <p class="card-text">{{ car.car_year }}</p>
+                            <p class="card-text">{{ car.car_description|truncatewords:10 }}</p>
                             <p class="post-meta">{{ car.car_public }}</p>
                         </div>
                         <div class="card-footer">
@@ -34,6 +34,9 @@
                     </div>
                 </div>
             {% endfor %}
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 my-4 mx-auto">
+              <a class="btn btn-dark btn-block" href="{% url 'all_cars' %}" role="button">View all</a>
           </div>
       </div>
 {% endblock %}

@@ -5,8 +5,15 @@ from .forms import AddCarForm, ContactForm
 
 class IndexView(ListView):
     context_object_name = 'cars'
-    template_name = 'carlist.html'
+    template_name = 'index.html'
     queryset = Car.objects.order_by('-car_public')[:3]
+
+
+class AllCarsView(ListView):
+    context_object_name = 'cars'
+    template_name = 'allcars.html'
+    paginate_by = 5
+    queryset = Car.objects.all()        
 
 
 class CarDetail(DetailView):
