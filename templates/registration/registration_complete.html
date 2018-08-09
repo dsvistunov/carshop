@@ -1,8 +1,21 @@
 {% extends "base.html"  %}
+{% load static %}
+
+{% block title %}Complete{% endblock %}
+
+{% block header_background %}
+    {% static "cars/images/contact-bg.jpg" %}
+{% endblock %}
+
+{% block header_title %}Registration completed{% endblock %}
+
+{% block subheader_title %}{% endblock %}
 
 {% block content %}
-<h2>Registration completed</h2>
-<p></p>
-Your confirmation code has been sent to your e-mail. You must confirm the registration
-just by clicking on the link.<br/><br/>
+<div class="container">
+	<div class="row">
+		<h4>Your confirmation code has been sent to your e-mail. You must confirm the registration
+just by clicking on the link.</h4>
+	</div>
+</div>
 {% endblock %}
