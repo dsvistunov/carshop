@@ -17,7 +17,11 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 {% for car in cars %}
                     <div class="card mb-4">
-                        <img class="card-img-top" src="{{ car.car_image.url }}" alt="Car image">
+                        {% if car.car_image %}
+                            <img class="card-img-top" src="{{ car.car_image.url }}" alt="Car image">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'cars/images/noimage.jpg' %}" alt="No images">
+                        {% endif %}
                         <div class="card-body">
                             <h2 class="card-title">{{ car.car_mark }} {{ car.car_model }}</h2>
                             <p class="card-text">{{ car.car_description|truncatewords:10 }}</p>
